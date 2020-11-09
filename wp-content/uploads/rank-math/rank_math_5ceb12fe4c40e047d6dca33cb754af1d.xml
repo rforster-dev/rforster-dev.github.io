@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="http://www.russforster.co.uk/main-sitemap.xsl"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>/category/gutenberg/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/opinion/</loc>
+		<lastmod>2020-05-05T20:53:37+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/tutorial/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/wordpress/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+</urlset>
