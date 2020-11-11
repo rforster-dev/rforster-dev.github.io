@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="https://rforster-dev.github.io/main-sitemap.xsl"?>
+<urlset xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xmlns:image="https://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="https://www.sitemaps.org/schemas/sitemap/0.9 https://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd https://www.google.com/schemas/sitemap-image/1.1 https://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
+	<url>
+		<loc>/category/gutenberg/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/opinion/</loc>
+		<lastmod>2020-05-05T20:53:37+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/tutorial/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+	<url>
+		<loc>/category/wordpress/</loc>
+		<lastmod>2020-08-26T21:18:39+01:00</lastmod>
+	</url>
+</urlset>
