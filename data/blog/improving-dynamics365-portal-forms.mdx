@@ -1,0 +1,57 @@
+---
+title: Improving Dynamics365 Portals Forms - a Form Generator GUI
+date: '2023-07-04'
+tags: ['dynamics365', 'portals', 'formbuilder']
+draft: false
+summary: 'Buliding a portal forms generator GUI, with integration of design tool Axure'
+---
+
+## The problem
+
+Having worked extensively with Microsoft Dynamics 365, it's clear that using the Portals Advanced and Basic web forms, can be a bit of a slog. Particularly if you are making complex, branching journeys for your user needs.
+
+This requires a different approach, and how we can cut down the time required on creating the scaffolding of the portal web form, and also being able to visualise the web form, instead of looking at pages and pages, of tabular data to find the web form step.
+
+## The thinking
+
+Creating web forms in Dynamics 365, can be a painful experience. It's perfectly fine but it does take quite a bit of time.
+
+Manually creating web form steps, following a naming convention, with multiple branching journeys is a lot of time that could be better well spent.
+
+We used a prototyping tool called Axure to generate wireframes that were a step-by-step visual representation of what we wanted the journey to be. Developers would then manually map all of these to web forms in Dynamics 365.
+
+So we required:
+
+- Integration with Axure, where we could upload the wireframe in JSON data, to create the "buliding blocks" of each web form step
+- Create a GUI where a developer can drag and drop each step, from the building blocks, and link up each we form step together.
+
+## The solution
+
+The solution is 2 fold:
+
+### Axure plugin
+
+- I created an Axure plugin that would generate a JSON schema of each of the steps in Axure, and copy to clipboard.
+
+### Dynamics 365 PCF Control
+
+I then created a PCF control that:
+
+- Took a JSON schema format to create the "building blocks" of each step.
+- A GUI drag-and-drop interface that developers allowed them:
+  -- Drag each block (a web form step) to the canvas
+  -- Link each step together - effectively creating the web form steps
+  -- Allowed conditional branching.
+- On save:
+  -- Create the web form
+  -- Create the web form steps, in order, following a programmatic naming convention
+  -- Created a screenshot of what the journey looks like visually
+  -- Allowed developers to view the visualised journey, and directly edit a web form step
+
+## Outcomes
+
+- Increased productivity of developers - by removing the slowness of manually creating each web form step, in order, and linking the branching to be done in one hit. This meant that we could release forms much quicker than before.
+
+## Closing thoughts
+
+- It's a really interesting piece of work - because this functionality doesn't exist anywhere. I might recreate this and list it on the marketplace for PCF controls for Dynamics365.
