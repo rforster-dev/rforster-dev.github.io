@@ -1,0 +1,45 @@
+---
+title: How I came up with a low-budget redirects manager for WordPress, Sharepoint and GatsbyJS
+date: '2023-07-04'
+tags: ['powerautomate', 'azuredevops', 'azure', 'wordpress', 'redirect-manager', 'sharepoint']
+draft: false
+summary: 'Buliding a low effort, redirects manager within Sharepoint, PowerAutomate and Azure DevOps'
+---
+
+## The problem
+
+Part of the project I was leading and developing for, required us to have a user friendly interface to manage web redirects that the user would setup.
+
+The organizaition was heavily invested in the Microsoft Technology stack and so wanted to utilize this.
+
+## The thinking
+
+- We wanted a user friendly way for digital editors to create and manage redirects across a website.
+- We had a static site generated, and so whenever we made a change to the redirects, we should have the option to rebuild the site should there be new links.
+- We hosted the site on Azure, meaning we had to use the dreaded web.config file to store these.
+
+## The solution
+
+As I had setup a SharePoint knowledge base for the website management, this felt like a good place for the editors to manage the redirects, external of the website. This had benefits of:
+
+- Devolved responsibility - external from the WordPress site
+- Using Microsoft tech stack which the organization desired more uptake for strategically
+- Simple interface to develop for, and also improved management of the solution (doesn't required WordPress knowledge)
+
+## How?!
+
+It looks as follows:
+
+- Create a SharePoint list to manage the redirects. This would contain fields of:
+  -- Current URL, New URL, On/Off
+- Create a Power Automate flow that:
+  -- On change of the list, copy each of the list rows, and map them to be web.config standard
+  -- Update the web.config with the new output from the flow
+  -- Commit the file to the repo in Azure DevOps
+  -- Trigger a pipeline build of the site, that was already setup to compile and publish a new version of the website files to Azure Web App.
+
+## Closing thoughts
+
+- It's a bit of a round peg square hole scenario, but this was a lot of fun to come up! It utilizes a lot of low code patterns to allow for a cheap and scalable solution, that all stakeholders were very pleased with.
+- Would probably make a separate small web application to handle the interface, this extend to be a manager for all of the organizaions websites and redirects, and include tracking statistics as well.
+- It's not the most elegant solution, i'm sure there are better ways to have done this but overall, given the timings, the effort allowed to commit to it, I was happy with it.
