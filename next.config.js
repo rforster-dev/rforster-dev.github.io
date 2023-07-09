@@ -56,6 +56,10 @@ module.exports = withBundleAnalyzer({
   reactStrictMode: true,
   basePath: '/github-pages',
   pageExtensions: ['js', 'jsx', 'md', 'mdx'],
+  images: {
+    loader: 'akamai',
+    path: '',
+  },
   eslint: {
     dirs: ['pages', 'components', 'lib', 'layouts', 'scripts'],
   },
