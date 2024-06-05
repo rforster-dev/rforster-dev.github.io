@@ -1,0 +1,62 @@
+---
+title: Home assistant and me
+date: '2024-04-04'
+tags: ['home assistant', 'automation', 'zigbee']
+draft: false
+summary: 'If something takes me more than 5 minutes, then automate it. An overview of my home assistant journey and my current setup'
+---
+
+## Why?
+
+At our internal tech conference, there was a talk from a collegue who demonstrated his home assistant setup. I'd never heard of the thing; I can use Google Home or Alexa or Apples Homekit (ew) no?
+
+But something about this really interested me; the fact that not a lot of it, is over wifi, it's over the Zigbee protocol.
+
+I suddenly started thinking about all the (dumb) devices I had around the house and how I could hook into them.
+
+I took the plunge and had purchased various devices, and this is what I ended up with...
+
+## My setup
+
+### Devices
+- 1 Lenovo M8 tablet; I wall mounted my tablet in my hallway so I can always get a glance of my dashboard as I enter and leave the house
+- A Raspberry Pi 3B; I had one lying around from a previous home project, and am running Home Assistant OS on there with the Home Assistant Supervisor integration - I am really not a fan of using containerisation for something so small - just because you can doesn't mean you should (people using Docker who do not understand Docker is a bit of a pet hate of mine!)
+- Sonoff Universal Zigbee Dongle; This is the controller I use to pick up Zigbee devices talking to each other and use the Zigbee2MQTT extension to convert them to MQTT format for a consistent format.
+- RTL-SDR, DVB-T & ADS-B Receiver Set with Antenna; This lets me listen and pick up devices that are what i'd call "old school dumb". For example; I have an Oil boiler (in this economy?!) which has a device in the tank outside my house, that holds 1000 litres of Oil to give me heating. This communicates with a device inside my house to update on a crude screen how much oil I have left. How does this talk to each other - via 433 Mhz frequency. This listens to "topics" that are pinging around all around us (you'd be surprised, various cars that have driven by i've picked up their tyre pressure readings that their car emits to itself!). I'm currently trying to hook into my thermastat to save me buying a Hive smart heating control.
+
+
+### Physical Sensors
+- Multiple Door contact sensors; I have a group of sensors that tells me if any of my doors are open and when. Useful at a glance to know if i've left the back door open. Same as for windows as well!
+- Vibration sensor; I'm using this in my mailbox to determine if the postman has been, and so I can keep track each day of how many parcels i've received roughly.
+- Blind drivers; I have various blinds around the house that on Home Assistant, run on automation to open and close at sunrise and sunset daily
+- Curtain drivers; I also have various curtains - obviously - around the house that also open and close on routine at sunrise and sunset. Incredibly useful when we're away and want to let people think we're in!
+- Temperature and Humidity; Useful to know the temperature in different rooms...kinda.
+- Blink cameras; I have my blink doorbell and camera hooked up to my dashboard
+- Water leak detection; My washing machine leaked recently, and I had no idea as it had seeped all the way underneath my wooden floor; never again I vowed. So I placed various water leak detector sensors where it spread too and set a routine to let me know if there was water detected. The best sensors are the ones you dont have to rely on but when you do, you really do!
+- Smart plugs; I can turn most of my lights on/off with commands.
+
+### Virtual sensors and automations
+- Waze travel time; At a glance I can see in real time how long it will take me to get from various locations; work, the train station, the vets, family.
+- Blink cameras; I request a new screenshot every 5 minutes as the standard integration does not do so of blink out of the box, but at a glance I can see whats happening.
+- Alarm system; Using the Door and Window sensors, I can arm my house! Who needs Yale. But basically, I use the `Alarmo` integration, and if any of the door or window sensors are opened when the house is "armed" within 30 seconds, if the disarm code is not entered, then a siren plays on all my alexa devices and sends a notification to my phone as well.
+- Curtain and Blinds; they will only close at sunset, if the associated door sensor is closed; if it is open, then it won't close as i'm probably outside, or i've been cooking perhaps.
+- I have a Go to bed routine which turns off the living room lights, but turns on the bedroom lights for me.
+
+## Closing thoughts?
+
+It sounds a lot, but i've barely scrated the surface.
+
+The best automations, sensors, routines etc are the ones that are invisible; you shouldn't be aware of them happening.
+
+## What I want to add next
+
+- Cord Light switch; My bathroom has a corded light switch, i'd like to be able to hook my Alexa routine of "Go to bed" to also turn the bathroom light on for me. That, and a routine to "pull the cord" if i've entered the bathroom between 12pm - 6am to turn the light on for me, but not the extractor fan.
+- Lights on stairs; i'd like an LED strip of lights on my stairway that turn on, on motion detection
+- Thermostat; I haven't quite worked out how to send commands to my boiler via my 433Mhz dongle, but i'd like to be able too!
+- Replace the Raspberry Pi; it's power performance is pretty weak, and i'm noticing i'm getting a lot of reboots on the system when it starts to run out of RAM. Usually if a service im running is unable to succeed.
+- Close my office blinds if the sun is too bright; Screen glare is a sod, and I sometimes just forget to close my blinds and end up squinting a lot. Minor but handy.
+- Turn on humidifer; I have Temperature and Humidity sensors, but would be nice to actualy just turn on my humidifier if its at a certain threshold
+
+Theres probably so much more uses I can think of or have, but just can't remember them as i'm typing this up.
+
+In short, Home Assistant is easy to learn, but hard to master.
