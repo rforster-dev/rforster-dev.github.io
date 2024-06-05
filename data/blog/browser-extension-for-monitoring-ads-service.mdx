@@ -1,0 +1,32 @@
+---
+title: Browser extension for monitoring Ads service
+date: '2024-02-04'
+tags: ['']
+draft: false
+summary: 'A browser extension the internal development team would use to monitor and debug anything to do with our Ad stack and CMPs'
+---
+
+## The problem
+
+Working with advertising can be very challenging, I saw an opportunity to improve the development teams time and understanding when debugging the ad stack. This was in the form of a browser extension that displayed various useful debugging information on the page.
+
+## The thinking
+
+I wanted a quick way that anyone; Dev, QA, Product Manager - whoever, could easily see information about our ad stack on any of our pages in their browser.
+
+
+## The solution
+
+I mapped out the following items we would want to display to a user which was:
+
+- Current adstack version running; this allowed you to know what version of our in house adstack version a website was running
+- CMP used; we had various CMPs (Consent Management Platform) across our brands, and knowing exactly which 3rd party provider you were using was vital to debug on sites.
+- Speedcurve metrics; We log alot of data to Speedcurve around the performance of our adstack, being able to see what markers we are setting and what those values are was very useful to know if a local code change, or production change had introduced a degredation to the service
+- Consent purposes consented too; To help debug "should i be seeing that ad?" and vice versa, by interacting the the tcfAPI, I was able to display to the user which user consent purposes you had consented too on that site, in your browser, without having to navigate a CMP and find the buried away options.
+- Toggle googfc; it's somewhat annoying having to suffix `?googfc` to a url to get Google Publisher Toolbar to appear, or type `googletag.openConsole()` in the console window, this short cutted that and triggered it for you.
+
+## Closing thoughts
+
+- It was an interesting devday project for me; something i've continued to support for the business during my work time or devdays I have.
+- I have bigger plans to integrate this into a tab within the developer toolbar in browsers, which is exciting
+- Theres also plans for us to bring our own internal debug tool into it as well!
