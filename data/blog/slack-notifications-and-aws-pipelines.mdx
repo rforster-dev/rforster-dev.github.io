@@ -1,0 +1,54 @@
+---
+title: Slack notifications via AWS pipelines
+date: '2024-02-04'
+tags: ['slack', 'cicd', 'notifications', 'aws', 'pipelines']
+draft: false
+summary: 'A fairly straight forward way on how to receive slack notifications of a build pipeline, with the package versions you are releasing'
+---
+
+## The problem
+
+The organisation uses slack to manage day to day cross team communication, and also ci/cd notifications of our various services.
+
+A new service we had developed, i'd realised we didn't have a proactive way of notifying us when we've deployed our monorepo packages to PreProduction and Production.
+
+Our monorepo had multiple packages that were distributed to different hosting services, and all formed a single service - basically many microservices.
+
+## The thinking
+
+- I wanted the development team to know when they have:
+-- succesfully
+-- unsuccessfuly
+
+deployed our monorepo to the microservices that it served, with also the package versions we were attempting to deploy.
+
+This would allow the development team, and business know in real time if their code is going all the way to production in a CI manner, or if it had halted because a step had failed (unit tests, load tests, general "build" failure).
+
+## The solution
+
+Part 1: Notifications for CI/CD actions
+
+A collection of ustom shell scripts triggered via AWS's *spec.yml files would:
+
+- Grep through the `package.json` file within each monorepo, and extract the `version` of each one, so we can output it in our message
+- Monitors the stages and for:
+-- Deployments (PreProduction and Production) and notify a CD Channel
+-- Tests (PreProduction and Production) and notify a CI Channels
+
+Part 2: Notifications for Strapi builds
+
+We developed a properiatry CMS based on Strapi to allow our Revenue Operations team to control and manage their advertising systems across our company sites.
+
+Part of that, is that when there is a change saved for an entry, we publish a new static asset that is hosted on an AWS Lambda and served on the frontends.
+
+What I did was:
+- On attempt of publishing a new static asset, for every site generated it would output that it was a success in a CI Channel
+- If it failed, we were also alerted to in the same CI Channel that it did not compile correctly.
+
+This on it's own was massive in terms of practicality and time saving where as before we did not have any real time way of knowing "has my change actually being served on the frontend?" this allowed cross teams to know if they entered malformed data that caused it to not compile, or if it was successful, which is also useful.
+
+## Closing thoughts
+
+- It was a fun and interesting piece of work mapping out the parts in the process where we would want to be notified, and how. 
+- It allowed me to flex my creative problem solving using the tools and systems available to me, in a user friendly way that not only just benefited the development team, but the wider business as well.
+- The way its done does not mean its specific to Slack; in theory any communication platform (i'm looking at you MS Teams) that accepts payloads/webhooks could be alerted.
